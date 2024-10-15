@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 200%;
+        }
+        .header {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 20px;
+            background-color: #f8f8f8;
+            border-bottom: 1px solid #ddd;
+        }
+        .username {
+            font-size: 1.2rem;
+            padding: 8px 12px;
+            background-color: white;
+            border-radius: 5px;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            background-color: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: darkblue;
+        }
+        iframe {
+            flex-grow: 1; 
+            border: none;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <span id="username" class="username"></span>
+            <div class="button-group">
+                <button onclick="loadPage('insert.html')">Insert</button>
+                <button onclick="loadPage('update.html')">Update</button>
+                <button onclick="loadPage('delete.html')">Delete</button>
+                <button onclick="loadPage('display.html')">Display</button>
+                <button onclick="signOut()">Sign Out</button>
+            </div>
+        </div>
+        <iframe id="contentFrame"></iframe>
+        <script>
+            function loadPage(page) {
+                document.getElementById('contentFrame').src = page;
+            }
+            function signOut() {
+                if (confirm('Are you sure you want to sign out?')) {
+                    window.location.href = 'signout'; 
+                }
+            }
+            window.onload = function() {
+                fetch('getUsername') 
+                    .then(response => response.text())
+                    .then(username => {
+                        document.getElementById('username').textContent = username;
+                    });
+            };
+        </script>
+    </div>
+</body>
+</html>

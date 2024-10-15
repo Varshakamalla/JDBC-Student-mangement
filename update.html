@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Profile</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function toggleDetails() {
+            const detailsDiv = document.getElementById("details");
+            const hideButton = document.getElementById("hideButton");
+            if (detailsDiv.style.display === "none") {
+                detailsDiv.style.display = "block";
+                hideButton.innerText = "Hide Details";
+            } else {
+                detailsDiv.style.display = "none";
+                hideButton.innerText = "Show Details";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Update Profile</h2>
+        <button id="hideButton" class="hide-details-button" onclick="toggleDetails()">Hide Details</button>
+        <div id="details">
+            <form action="update" method="post">
+                <label for="rollno">Roll Number:</label>
+                <input type="text" name="rollno" required><br>
+                <label for="username">Username:</label>
+                <input type="text" name="username" required><br>
+                <label for="email">Email:</label>
+                <input type="email" name="email" required><br>
+                <label for="phone">Phone:</label>
+                <input type="text" name="phone" required><br>
+                <label for="password">Password:</label>
+                <input type="password" name="password" required><br>
+                <label for="confirm_password">Confirm Password:</label>
+                <input type="password" name="confirm_password" required><br>
+                <input type="submit" value="Update">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
